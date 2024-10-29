@@ -118,3 +118,84 @@ window.addEventListener('scroll', () => {
 backToTopButton.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// Gallery page functionality
+document.addEventListener('DOMContentLoaded', () => {
+    let page = 1;
+    let loading = false;
+    let currentView = 'bento';
+    
+    const bentoGrid = document.getElementById('bento-grid');
+    const slideshowContainer = document.getElementById('slideshow-container');
+    const modal = document.getElementById('imageModal');
+    const modalImage = document.getElementById('modalImage');
+    
+    // View Toggle
+    document.getElementById('bentoView').addEventListener('click', () => switchView('bento'));
+    document.getElementById('slideshowView').addEventListener('click', () => switchView('slideshow'));
+    
+    async function loadImages(page) {
+        if (loading) return;
+        loading = true;
+        
+        document.getElementById('loading').classList.remove('hidden');
+        
+        try {
+            const response = await fetch(`/api/gallery?page=${page}`);
+            const data = await response.json();
+            
+            renderImages(data.images);
+            
+            if (data.images.length > 0) {
+                page++;
+            }
+        } catch (error) {
+            console.error('Error loading images:', error);
+        } finally {
+            loading = false;
+            document.getElementById('loading').classList.add('hidden');
+        }
+    }
+    
+    function renderImages(images) {
+        images.forEach(image => {
+            const item = document.createElement('div');
+            item.className = `gallery-item ${getRandomSpan()}`;
+            
+            item.innerHTML = `
+                <img src="${image.url}" 
+                     alt="${image.description}"
+                     class="w-full h-full object-cover rounded-lg cursor-pointer"
+                     loading="lazy">
+            `;
+            
+            item.querySelector('img').addEventListener('click', () => showModal(image.url));
+            bentoGrid.appendChild(item);
+        });
+    }
+    
+    function getRandomSpan() {
+        const spans = [
+            'row-span-1 col-span-1',
+            'row-span-2 col-span-1',
+            'row-span-1 col-span-2',
+            'row-span-2 col-span-2'
+        ];
+        return spans[Math.floor(Math.random() * spans.length)];
+    }
+    
+    function showModal(imageUrl) {
+        modal.classList.remove('hidden');
+        modalImage.src = imageUrl;
+    }
+    
+    // Infinite Scroll
+    window.addEventListener('scroll', () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 1000) {
+            loadImages(page);
+        }
+    });
+    
+    // Initial load
+    loadImages(page);
+});

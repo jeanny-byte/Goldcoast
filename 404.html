@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Goldcoast Literacy Program</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Page Not Found - Goldcoast Literacy Program</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Barlow:wght@400;700&family=Baloo+Thambi+2:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    
+
+<body class="min-h-screen flex flex-col bg-gray-50">
+    <!-- Navigation -->
     <div class="nav-container">
         <nav class="navbar">
             <div class="logo"><a href="index.php"><img src="images/GLP_logo.png" alt="logo"></a></div>
@@ -27,6 +29,7 @@
         </nav>
     </div>
 
+    <!-- Side Drawer -->
     <div class="side-drawer" id="sideDrawer">
         <a href="projects.html">Projects</a>
         <a href="about.html">About Us</a>
@@ -34,15 +37,31 @@
         <a href="donate.html">Get Involved</a>
     </div>
 
+    <!-- 404 Content -->
+    <main class="flex-grow flex items-center justify-center px-6 py-24">
+        <div class="text-center">
+            <h1 class="font-paytone text-6xl md:text-8xl text-navy-blue mb-8">404</h1>
+            <div class="space-y-6 max-w-2xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-barlow font-bold text-gray-800">
+                    Oops! Page Not Found
+                </h2>
+                <p class="text-gray-600 font-baloo text-lg">
+                    The page you're looking for seems to have gone on an adventure. 
+                    Don't worry, you can always return home or check out our other pages.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+                    <a href="index.php" class="btn px-8 py-3 text-lg inline-block">
+                        Return Home
+                    </a>
+                    <a href="projects.html" class="btn px-8 py-3 text-lg inline-block">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <div class="container mx-auto p-4 mt-20">
-        <h1 class="text-4xl font-bold mb-4">About Us</h1>
-        <p class="text-lg mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <p class="text-lg mb-4">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p class="text-lg mb-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-    </div>
-
-    <!--Footer-->
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white py-12">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -53,18 +72,18 @@
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Our Projects</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Get Involved</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Donate</a></li>
+                        <li><a href="index.php" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="projects.html" class="text-gray-400 hover:text-white transition duration-300">Our Projects</a></li>
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white transition duration-300">Get Involved</a></li>
+                        <li><a href="donate.html" class="text-gray-400 hover:text-white transition duration-300">Donate</a></li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
                     <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Accra, Ghana</li>
-                        <li><i class="fas fa-phone mr-2"></i>+233 (27) 360 5996</li>
-                        <li><i class="fas fa-envelope mr-2"></i>contact@golcoastliteracyprogram.org</li>
+                        <li>Accra, Ghana</li>
+                        <li>+233 (27) 360 5996</li>
+                        <li>contact@golcoastliteracyprogram.org</li>
                     </ul>
                 </div>
                 <div>
@@ -80,20 +99,10 @@
                 <div class="text-gray-400 mb-4 md:mb-0">
                     &copy; 2023 GCLP-NGO | Powered By Dcom Technology Ltd.
                 </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
-                </div>
             </div>
         </div>
     </footer>
 
-    <button id="back-to-top" class="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
-</html>
+</html> 
