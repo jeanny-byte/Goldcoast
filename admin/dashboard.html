@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - GCLP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body class="bg-gray-100">
+    <!-- Admin Navigation -->
+    <nav class="bg-navy-blue text-white px-6 py-4 fixed w-full top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <a href="/"><img src="/images/GLP_logo.png" alt="logo" class="w-10 h-10"></a>
+                <span class="font-bold">GCLP Admin</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="outreachTabBtn" class="text-white hover:text-yellow-300">Outreach Programs</button>
+                <button id="volunteersTabBtn" class="text-white hover:text-yellow-300">Volunteers</button>
+                <button id="galleryTabBtn" class="text-white hover:text-yellow-300">Gallery</button>
+                <button id="logoutBtn" class="btn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 pt-24">
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-gray-500 text-sm">Total Programs</h3>
+                <p class="text-3xl font-bold" id="totalPrograms">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-gray-500 text-sm">Total Students</h3>
+                <p class="text-3xl font-bold" id="totalStudents">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-gray-500 text-sm">Active Volunteers</h3>
+                <p class="text-3xl font-bold" id="activeVolunteers">0</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-6">
+                <h3 class="text-gray-500 text-sm">Pending Applications</h3>
+                <p class="text-3xl font-bold" id="pendingVolunteers">0</p>
+            </div>
+        </div>
+
+        <!-- Outreach Programs Section -->
+        <div id="outreachSection" class="bg-white rounded-lg shadow p-6 mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Outreach Programs</h2>
+                <button id="addNewBtn" class="btn">Add New Program</button>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="flex flex-wrap gap-4 mb-6">
+                <input type="text" id="programSearch" placeholder="Search programs..." 
+                       class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <select id="programFilter" class="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">All Types</option>
+                    <option value="school">School</option>
+                    <option value="community">Community</option>
+                    <option value="rural">Rural</option>
+                </select>
+            </div>
+
+            <!-- Programs Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Students</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Last Visit</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="programsTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Volunteers Section -->
+        <div id="volunteersSection" class="bg-white rounded-lg shadow p-6 mb-8 hidden">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Volunteer Management</h2>
+                <div class="flex gap-4">
+                    <select id="volunteerStatusFilter" class="px-4 py-2 border rounded-lg">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <input type="text" id="volunteerSearch" placeholder="Search volunteers..." 
+                           class="px-4 py-2 border rounded-lg">
+                </div>
+            </div>
+
+            <!-- Volunteers Table -->
+            <div class="overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phone</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Applied Date</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="volunteersTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Gallery Section -->
+        <div id="gallerySection" class="hidden">
+            <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+                <h2 class="text-2xl font-bold mb-4">Gallery Management</h2>
+                
+                <!-- Upload Form -->
+                <form id="imageUploadForm" class="space-y-4 mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Title</label>
+                            <input type="text" name="title" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Category</label>
+                            <select name="category" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                                <option value="events">Events</option>
+                                <option value="programs">Programs</option>
+                                <option value="community">Community</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea name="description" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Image</label>
+                        <input type="file" name="image" accept="image/*" required class="mt-1 block w-full">
+                    </div>
+                    <div class="flex justify-end">
+                        <button type="submit" class="btn">Upload Image</button>
+                    </div>
+                </form>
+
+                <!-- Gallery Grid -->
+                <div id="adminGalleryGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Images will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Modal -->
+    <div id="programModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-2xl w-full mx-4">
+            <h3 class="text-2xl font-bold mb-6" id="modalTitle">Add New Program</h3>
+            <form id="programForm">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Program Name</label>
+                        <input type="text" name="name" required
+                               class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Location</label>
+                        <input type="text" name="location" required
+                               class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Students Reached</label>
+                        <input type="number" name="studentsReached" required
+                               class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Type</label>
+                        <select name="type" required
+                                class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                            <option value="school">School</option>
+                            <option value="community">Community</option>
+                            <option value="rural">Rural</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Last Visit</label>
+                        <input type="date" name="lastVisit" required
+                               class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Next Visit</label>
+                        <input type="date" name="nextVisit"
+                               class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Image URL</label>
+                        <input type="url" name="imageUrl" required
+                               class="mt-1 block w-full px-3 py-2 border rounded-lg">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700">Description</label>
+                        <textarea name="description" rows="3"
+                                  class="mt-1 block w-full px-3 py-2 border rounded-lg"></textarea>
+                    </div>
+                </div>
+                <div class="mt-6 flex justify-end space-x-4">
+                    <button type="button" id="cancelBtn" class="px-4 py-2 border rounded-lg">Cancel</button>
+                    <button type="submit" class="btn">Save Program</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Volunteer Details Modal -->
+    <div id="volunteerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-2xl w-full mx-4">
+            <h3 class="text-2xl font-bold mb-6">Volunteer Details</h3>
+            <div id="volunteerDetails" class="space-y-4">
+                <!-- Details will be populated dynamically -->
+            </div>
+            <div class="mt-6 flex justify-end space-x-4">
+                <button id="closeVolunteerModal" class="px-4 py-2 border rounded-lg">Close</button>
+                <button id="updateVolunteerStatus" class="btn">Update Status</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/admin/dashboard.js"></script>
+    <script>
+    let currentProgramId = null;
+
+    // Modal functions
+    function showModal() {
+        document.getElementById('programModal').style.display = 'flex';
+    }
+
+    function hideModal() {
+        document.getElementById('programModal').style.display = 'none';
+        document.getElementById('programForm').reset();
+        currentProgramId = null;
+        document.getElementById('modalTitle').textContent = 'Add New Program';
+    }
+
+    // Add event listeners for modal
+    document.getElementById('addNewBtn').addEventListener('click', showModal);
+    document.getElementById('cancelBtn').addEventListener('click', hideModal);
+
+    // Show outreach section by default
+    document.addEventListener('DOMContentLoaded', () => {
+        hideAllSections();
+        document.getElementById('outreachSection').classList.remove('hidden');
+    });
+
+    // Tab switching
+    document.getElementById('outreachTabBtn').addEventListener('click', () => {
+        hideAllSections();
+        document.getElementById('outreachSection').classList.remove('hidden');
+    });
+
+    document.getElementById('volunteersTabBtn').addEventListener('click', () => {
+        hideAllSections();
+        document.getElementById('volunteersSection').classList.remove('hidden');
+        loadVolunteers();
+    });
+
+    // Function to hide all sections
+    function hideAllSections() {
+        const sections = [
+            'outreachSection',
+            'volunteersSection',
+            'gallerySection'
+        ];
+        
+        sections.forEach(sectionId => {
+            document.getElementById(sectionId).classList.add('hidden');
+        });
+    }
+
+    // Gallery management functions
+    function loadAdminGalleryImages() {
+        const images = getGalleryImages();
+        const galleryGrid = document.getElementById('adminGalleryGrid');
+        
+        galleryGrid.innerHTML = images.map(image => `
+            <div class="relative group">
+                <img src="${image.imageUrl}" alt="${image.title}" 
+                     class="w-full h-48 object-cover rounded-lg">
+                <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 
+                            transition-opacity duration-300 flex items-center justify-center">
+                    <div class="text-white text-center p-4">
+                        <h3 class="font-bold">${image.title}</h3>
+                        <p class="text-sm">${image.category}</p>
+                        <button onclick="deleteGalleryImage('${image.id}')" 
+                                class="mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    document.getElementById('imageUploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(e.target);
+        const file = formData.get('image');
+        
+        // Convert image to base64
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const imageData = {
+                title: formData.get('title'),
+                description: formData.get('description'),
+                category: formData.get('category'),
+                imageUrl: event.target.result
+            };
+            
+            addGalleryImage(imageData);
+            e.target.reset();
+            loadAdminGalleryImages();
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // Initialize gallery when tab is clicked
+    document.getElementById('galleryTabBtn').addEventListener('click', () => {
+        hideAllSections();
+        document.getElementById('gallerySection').classList.remove('hidden');
+        loadAdminGalleryImages();
+    });
+
+    // Handle form submission
+    document.getElementById('programForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const programData = Object.fromEntries(formData.entries());
+
+        try {
+            // Store in localStorage
+            const programs = JSON.parse(localStorage.getItem('programs') || '[]');
+            
+            if (currentProgramId) {
+                // Update existing program
+                const index = programs.findIndex(p => p.id === currentProgramId);
+                if (index !== -1) {
+                    programs[index] = { ...programs[index], ...programData };
+                }
+            } else {
+                // Add new program
+                programs.push({
+                    id: Date.now().toString(),
+                    ...programData,
+                    createdAt: new Date().toISOString()
+                });
+            }
+            
+            localStorage.setItem('programs', JSON.stringify(programs));
+            hideModal();
+            loadPrograms();
+        } catch (error) {
+            console.error('Error saving program:', error);
+            alert('Error saving program');
+        }
+    });
+
+    // Load programs from localStorage
+    function loadPrograms() {
+        try {
+            const programs = JSON.parse(localStorage.getItem('programs') || '[]');
+            updateStats(programs);
+            renderProgramsTable(programs);
+        } catch (error) {
+            console.error('Error loading programs:', error);
+            alert('Error loading programs');
+        }
+    }
+
+    function updateStats(programs) {
+        document.getElementById('totalPrograms').textContent = programs.length;
+        const totalStudents = programs.reduce((sum, p) => sum + Number(p.studentsReached), 0);
+        document.getElementById('totalStudents').textContent = totalStudents.toLocaleString();
+    }
+
+    function renderProgramsTable(programs) {
+        const tbody = document.getElementById('programsTableBody');
+        tbody.innerHTML = programs.map(program => `
+            <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4">${program.name}</td>
+                <td class="px-6 py-4">${program.location}</td>
+                <td class="px-6 py-4">${program.type}</td>
+                <td class="px-6 py-4">${program.studentsReached}</td>
+                <td class="px-6 py-4">${new Date(program.lastVisit).toLocaleDateString()}</td>
+                <td class="px-6 py-4">
+                    <button onclick="editProgram('${program.id}')" class="text-blue-600 hover:text-blue-800 mr-3">Edit</button>
+                    <button onclick="deleteProgram('${program.id}')" class="text-red-600 hover:text-red-800">Delete</button>
+                </td>
+            </tr>
+        `).join('');
+    }
+
+    // Edit and Delete functions
+    function editProgram(id) {
+        const programs = JSON.parse(localStorage.getItem('programs') || '[]');
+        const program = programs.find(p => p.id === id);
+        if (program) {
+            currentProgramId = id;
+            const form = document.getElementById('programForm');
+            Object.entries(program).forEach(([key, value]) => {
+                const input = form.elements[key];
+                if (input) {
+                    if (key === 'lastVisit' || key === 'nextVisit') {
+                        input.value = value ? value.split('T')[0] : '';
+                    } else {
+                        input.value = value;
+                    }
+                }
+            });
+            document.getElementById('modalTitle').textContent = 'Edit Program';
+            showModal();
+        }
+    }
+
+    function deleteProgram(id) {
+        if (!confirm('Are you sure you want to delete this program?')) return;
+        
+        try {
+            const programs = JSON.parse(localStorage.getItem('programs') || '[]');
+            const updatedPrograms = programs.filter(p => p.id !== id);
+            localStorage.setItem('programs', JSON.stringify(updatedPrograms));
+            loadPrograms();
+        } catch (error) {
+            console.error('Error deleting program:', error);
+            alert('Error deleting program');
+        }
+    }
+    </script>
+</body>
+</html> 

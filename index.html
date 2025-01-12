@@ -39,20 +39,36 @@
     </div>
 
     <!--Hero section-->
-    <div class="bg-white ">
-    <div id="hero" class="min-h-screen flex flex-col items-center justify-center text-center p-4 opacity-0 transition-opacity duration-1000">
-        <p class="text-sm md:text-base lg:text-lg mb-2 text-gray-600 font-baloo">
-            Enhancing and increasing child literacy
-        </p>
-        <h1 class="text-lg text-4xl md:text-6xl lg:text-7xl font-bold mb-3 text-navy-blue font-paytone tracking-tight">
-            GOLDCOAST
-        </h1>
-        <p class="text-xl md:text-2xl lg:text-3xl mb-1 text-gray-800 font-barlow font-bold tracking-wide">LITERACY</p>
-        <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-800 font-baloo">PROGRAM</p>
-        <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-    </div>
+    <div class="bg-white relative">
+        <!-- Add video background -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden z-0">
+            <video 
+                class="absolute min-w-full min-h-full object-cover"
+                autoplay 
+                muted 
+                loop 
+                playsinline
+            >
+                <source src="videos/hero-background.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <!-- Add overlay to ensure text remains readable -->
+            <div class="absolute inset-0 bg-white/70"></div>
+        </div>
+
+        <div id="hero" class="min-h-screen flex flex-col items-center justify-center text-center p-4 opacity-0 transition-opacity duration-1000 relative z-10">
+            <p class="text-sm md:text-base lg:text-lg mb-2 text-gray-600 font-baloo">
+                Enhancing and increasing child literacy
+            </p>
+            <h1 class="text-lg text-4xl md:text-6xl lg:text-7xl font-bold mb-3 text-navy-blue font-paytone tracking-tight">
+                GOLDCOAST
+            </h1>
+            <p class="text-xl md:text-2xl lg:text-3xl mb-1 text-gray-800 font-barlow font-bold tracking-wide">LITERACY</p>
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-800 font-baloo">PROGRAM</p>
+            <svg xmlns="http://www.w3.org/2000/svg" class="animate-bounce w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+        </div>
     </div>
 
     <!--Achievement Section-->
@@ -89,57 +105,219 @@
     </div>
     </div>
 
-    <!--Footer-->
-    <footer class="bg-gray-800 text-white py-12">
+    <!--Impact Stories Section-->
+    <section class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">About Us</h3>
-                    <p class="text-gray-400">Goldcoast Literacy Program is hoping for an illiteracy free world where we wish for every child learn how to read and having whiles doing.</p>
+            <h2 class="text-3xl md:text-4xl font-paytone text-center mb-12 text-navy-blue">Our Impact Stories</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden story-card">
+                    <img src="images/story1.jpg" alt="Impact Story 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="font-barlow font-bold text-xl mb-2">Sarah's Reading Journey</h3>
+                        <p class="text-gray-600 mb-4">From struggling with basic words to reading full stories, Sarah's transformation inspires us all.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Read More →</a>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Our Programs</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Get Involved</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Donate</a></li>
+                <!-- Add 2 more similar story cards -->
+            </div>
+        </div>
+    </section>
+
+    <!--Our Programs Overview-->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-paytone text-center mb-12 text-navy-blue">Our Outreach Programs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Column 1: School Outreach -->
+                <div class="program-card text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-barlow font-bold text-xl mb-3">School Outreach</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>Accra Basic School</li>
+                        <li>Tema International</li>
+                        <li>Cape Coast Elementary</li>
+                        <li>Kumasi Primary</li>
+                        <li>Takoradi Basic</li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Accra, Ghana</li>
-                        <li><i class="fas fa-phone mr-2"></i>+233 (27) 360 5996</li>
-                        <li><i class="fas fa-envelope mr-2"></i>contact@golcoastliteracyprogram.org</li>
+
+                <!-- Column 2: Community Centers -->
+                <div class="program-card text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-barlow font-bold text-xl mb-3">Community Centers</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>Labadi Community Hub</li>
+                        <li>Teshie Learning Center</li>
+                        <li>Nungua Youth Center</li>
+                        <li>Osu Children's Library</li>
+                        <li>Dansoman Center</li>
                     </ul>
                 </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Newsletter</h3>
-                    <form id="newsletter-form" class="space-y-2">
-                        <input type="email" placeholder="Your email" class="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <button type="submit" class="w-full hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded transition duration-300 btn">Subscribe</button>
-                    </form>
+
+                <!-- Column 3: Rural Outreach -->
+                <div class="program-card text-center p-6 bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+                    <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-10 h-10 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path>
+                        </svg>
+                    </div>
+                    <h3 class="font-barlow font-bold text-xl mb-3">Rural Outreach</h3>
+                    <ul class="text-gray-600 space-y-2">
+                        <li>Ada Village School</li>
+                        <li>Volta Reading Club</li>
+                        <li>Eastern Region Hub</li>
+                        <li>Central Library Project</li>
+                        <li>Northern Literacy Center</li>
+                    </ul>
                 </div>
             </div>
-            <hr class="my-8 border-gray-700">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-400 mb-4 md:mb-0">
-                    &copy; 2023 GCLP-NGO | Powered By Dcom Technology Ltd.
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
+            <div class="text-center mt-12">
+                <a href="programs.html" class="btn">View All Locations</a>
+            </div>
+        </div>
+    </section>
+
+    <!--Call to Action Section-->
+    <section class="py-20 bg-navy-blue text-white relative overflow-hidden">
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-paytone mb-6">Make a Difference Today</h2>
+                <p class="text-lg mb-8 text-gray-200">Your support can help us reach more children and communities with our literacy programs.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="donate.html" class="btn">Donate Now</a>
+                    <a href="#volunteer" class="btn bg-transparent border-2 border-white text-white hover:bg-white hover:text-navy-blue">Volunteer</a>
                 </div>
             </div>
         </div>
-    </footer>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-navy-blue opacity-50"></div>
+    </section>
 
-    <button id="back-to-top" class="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+    <!--Latest News & Updates-->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-paytone text-center mb-12 text-navy-blue">Latest Updates</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <article class="bg-white rounded-lg shadow-md overflow-hidden news-card">
+                    <img src="images/news1.jpg" alt="News 1" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="text-sm text-gray-500 mb-2">March 15, 2024</div>
+                        <h3 class="font-barlow font-bold text-xl mb-2">New Learning Center Opens in Accra</h3>
+                        <p class="text-gray-600 mb-4">Expanding our reach to serve more children in the greater Accra region.</p>
+                        <a href="#" class="text-blue-600 font-semibold hover:text-blue-800">Read More →</a>
+                    </div>
+                </article>
+                <!-- Add 2 more news articles -->
+            </div>
+        </div>
+    </section>
+
+    <!--Partners & Supporters-->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-paytone text-center mb-12 text-navy-blue">Our Partners</h2>
+            <div class="flex flex-wrap justify-center items-center gap-8">
+                <img src="images/partner1.png" alt="Partner 1" class="h-12 partner-logo">
+                <img src="images/partner2.png" alt="Partner 2" class="h-12 partner-logo">
+                <img src="images/partner3.png" alt="Partner 3" class="h-12 partner-logo">
+                <!-- Add more partner logos -->
+            </div>
+        </div>
+    </section>
+
+    <!--Footer-->
+    <!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- About Section -->
+            <div class="footer-animate footer-animate-delay-1">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">About Us</h3>
+                <p class="text-gray-400">Goldcoast Literacy Program is hoping for an illiteracy free world where we wish for every child learn how to read and having whiles doing.</p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-animate footer-animate-delay-2">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
+                    <li><a href="programs.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Our Programs</a></li>
+                    <li><a href="volunteer.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Get Involved</a></li>
+                    <li><a href="donate.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Donate</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-animate footer-animate-delay-3">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">Contact Us</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="hover:translate-x-2 transition-transform duration-300">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Accra, Ghana
+                    </li>
+                    <li class="hover:translate-x-2 transition-transform duration-300">
+                        <i class="fas fa-phone mr-2"></i>+233 (27) 360 5996
+                    </li>
+                    <li class="hover:translate-x-2 transition-transform duration-300">
+                        <i class="fas fa-envelope mr-2"></i>contact@golcoastliteracyprogram.org
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-animate footer-animate-delay-4">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">Newsletter</h3>
+                <form id="newsletter-form" class="space-y-2">
+                    <input type="email" placeholder="Your email" 
+                           class="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 newsletter-input" 
+                           required>
+                    <button type="submit" 
+                            class="w-full hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded transition duration-300 btn transform hover:scale-105">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <hr class="my-8 border-gray-700">
+
+        <!-- Footer Bottom -->
+        <div class="flex flex-col md:flex-row justify-between items-center footer-animate">
+            <div class="text-gray-400 mb-4 md:mb-0">
+                &copy; 2023 GCLP-NGO | Powered By Dcom Technology Ltd.
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 
 <script src="script.js"></script>
 </body>

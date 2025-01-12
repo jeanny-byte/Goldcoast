@@ -1,0 +1,7 @@
+{
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development nodemon server.js",
+    "rotate-logs": "node scripts/rotate-logs.js"
+  }
+} 

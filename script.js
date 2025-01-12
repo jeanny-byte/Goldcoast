@@ -118,3 +118,118 @@ window.addEventListener('scroll', () => {
 backToTopButton.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+async function loadOutreachPrograms() {
+    try {
+        const response = await fetch('/api/outreach-programs');
+        const programs = await response.json();
+        
+        const programsContainer = document.getElementById('programs-container');
+        if (!programsContainer) return;
+
+        programsContainer.innerHTML = programs.map(program => `
+            <div class="program-card p-6">
+                <h3 class="font-barlow font-bold text-xl mb-4">${program.name}</h3>
+                <div class="mb-4">
+                    <img src="${program.imageUrl}" alt="${program.name}" 
+                         class="w-full h-48 object-cover rounded-lg mb-4">
+                </div>
+                <ul class="space-y-2 text-gray-600">
+                    <li>📍 Location: ${program.location}</li>
+                    <li>👥 Students Reached: ${program.studentsReached}+</li>
+                    <li>📅 Last Visit: ${new Date(program.lastVisit).toLocaleDateString()}</li>
+                    ${program.nextVisit ? `<li>🗓️ Next Visit: ${new Date(program.nextVisit).toLocaleDateString()}</li>` : ''}
+                </ul>
+                <a href="#" class="btn mt-4 inline-block">View Details</a>
+            </div>
+        `).join('');
+
+        // Update statistics
+        const totalSchools = document.getElementById('total-schools');
+        if (totalSchools) {
+            totalSchools.textContent = programs.length;
+        }
+
+        const totalStudents = document.getElementById('total-students');
+        if (totalStudents) {
+            const total = programs.reduce((sum, program) => sum + program.studentsReached, 0);
+            totalStudents.textContent = total.toLocaleString();
+        }
+
+    } catch (error) {
+        console.error('Error loading outreach programs:', error);
+    }
+}
+
+// Call this function when the page loads
+document.addEventListener('DOMContentLoaded', loadOutreachPrograms);
+
+// Gallery Management
+const GALLERY_STORAGE_KEY = 'galleryImages';
+
+function getGalleryImages() {
+    const stored = localStorage.getItem(GALLERY_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : [];
+}
+
+function saveGalleryImages(images) {
+    localStorage.setItem(GALLERY_STORAGE_KEY, JSON.stringify(images));
+}
+
+function addGalleryImage(imageData) {
+    const images = getGalleryImages();
+    const newImage = {
+        id: Date.now().toString(),
+        ...imageData,
+        dateAdded: new Date().toISOString(),
+        active: true
+    };
+    images.push(newImage);
+    saveGalleryImages(images);
+    return newImage;
+}
+
+function deleteGalleryImage(imageId) {
+    const images = getGalleryImages();
+    const updatedImages = images.filter(img => img.id !== imageId);
+    saveGalleryImages(updatedImages);
+}
+
+// FAQ Accordion functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const faqButtons = document.querySelectorAll('.faq-button');
+    
+    faqButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('svg');
+            
+            // Close all other answers
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.add('hidden');
+                    item.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+                }
+            });
+            
+            // Check if current answer is already visible
+            const isVisible = !answer.classList.contains('hidden');
+            
+            if (isVisible) {
+                // If visible, hide it
+                answer.classList.add('hidden');
+                icon.classList.remove('rotate-180');
+            } else {
+                // If hidden, show it
+                answer.classList.remove('hidden');
+                icon.classList.add('rotate-180');
+            }
+            
+            // Optional: Smooth scroll to the opened item
+            if (!answer.classList.contains('hidden')) {
+                faqItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        });
+    });
+});

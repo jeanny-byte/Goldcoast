@@ -6,43 +6,12 @@
     <title>Gallery - Goldcoast Learning Authority</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .timeline {
-            position: relative;
-            padding: 10px 0;
-        }
-        .timeline-item {
-            position: relative;
-            margin: 20px 0;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            height: 100%;
-            width: 2px;
-            background: #ccc;
-            transform: translateX(-50%);
-        }
-        .timeline-content {
-            position: relative;
-            width: 45%;
-            padding: 10px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .timeline-content.left {
-            left: 0;
-        }
-        .timeline-content.right {
-            left: 55%;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Barlow:wght@400;700&family=Baloo+Thambi+2:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Add Lightbox CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
 </head>
 <body>
-    
+    <!-- Navigation -->
     <div class="nav-container">
         <nav class="navbar">
             <div class="logo"><a href="index.html"><img src="images/GLP_logo.png" alt="logo"></a></div>
@@ -68,85 +37,246 @@
         <a href="donate.html">Get Involved</a>
     </div>
 
-
-    <div class="container mx-auto p-4 mt-20">
-        <h1 class="text-4xl font-bold mb-4">Gallery</h1>
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-content left">
-                    <h3>Event 1</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                </div>
+    <!-- Hero Section -->
+    <header class="relative bg-navy-blue text-white py-32 mt-20">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl font-paytone mb-6">Our Gallery</h1>
+                <p class="text-xl text-gray-200 font-baloo">Capturing moments of impact and transformation</p>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-content right">
-                    <h3>Event 2</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                </div>
-            </div>
-            <div class="timeline-item">
-                <div class="timeline-content left">
-                    <h3>Event 3</h3>
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                </div>
-            </div>
-            <!-- Add more timeline items as needed -->
         </div>
-    </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-blue-900 to-navy-blue opacity-50"></div>
+    </header>
+
+    <!-- Gallery Filter -->
+    <section class="py-8 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-6 py-2 rounded-full bg-navy-blue text-white hover:bg-blue-700 transition-colors gallery-filter active" data-filter="all">All</button>
+                <button class="px-6 py-2 rounded-full bg-gray-200 hover:bg-navy-blue hover:text-white transition-colors gallery-filter" data-filter="events">Events</button>
+                <button class="px-6 py-2 rounded-full bg-gray-200 hover:bg-navy-blue hover:text-white transition-colors gallery-filter" data-filter="programs">Programs</button>
+                <button class="px-6 py-2 rounded-full bg-gray-200 hover:bg-navy-blue hover:text-white transition-colors gallery-filter" data-filter="community">Community</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                <!-- Images will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Gallery Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-paytone text-navy-blue text-center mb-8">Video Highlights</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Video Item 1 -->
+                <div class="video-item">
+                    <div class="relative rounded-lg overflow-hidden">
+                        <iframe class="w-full aspect-video" src="https://www.youtube.com/embed/VIDEO_ID" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="mt-4 text-lg font-bold">Program Impact Story</h3>
+                    <p class="text-gray-600">Watch how our programs are changing lives</p>
+                </div>
+                <!-- Add more video items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Instagram Feed Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-paytone text-navy-blue text-center mb-8">Follow Us on Instagram</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Instagram Feed Items -->
+                <!-- Add your Instagram feed integration here -->
+            </div>
+            <div class="text-center mt-8">
+                <a href="https://instagram.com/your_handle" target="_blank" class="btn">
+                    <i class="fab fa-instagram mr-2"></i>Follow Us
+                </a>
+            </div>
+        </div>
+    </section>
 
     <!--Footer-->
-    <footer class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">About Us</h3>
-                    <p class="text-gray-400">Goldcoast Literacy Program is hoping for an illiteracy free world where we wish for every child learn how to read and having whiles doing.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Our Programs</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Get Involved</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition duration-300">Donate</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-map-marker-alt mr-2"></i>Accra, Ghana</li>
-                        <li><i class="fas fa-phone mr-2"></i>+233 (27) 360 5996</li>
-                        <li><i class="fas fa-envelope mr-2"></i>contact@golcoastliteracyprogram.org</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-semibold mb-4">Newsletter</h3>
-                    <form id="newsletter-form" class="space-y-2">
-                        <input type="email" placeholder="Your email" class="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                        <button type="submit" class="w-full hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded transition duration-300 btn">Subscribe</button>
-                    </form>
-                </div>
+   <!-- Footer -->
+<footer class="bg-gray-800 text-white py-12">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- About Section -->
+            <div class="footer-animate footer-animate-delay-1">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">About Us</h3>
+                <p class="text-gray-400">Goldcoast Literacy Program is hoping for an illiteracy free world where we wish for every child learn how to read and having whiles doing.</p>
             </div>
-            <hr class="my-8 border-gray-700">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="text-gray-400 mb-4 md:mb-0">
-                    &copy; 2023 GCLP-NGO | Powered By Dcom Technology Ltd.
-                </div>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin-in"></i></a>
-                </div>
+
+            <!-- Quick Links -->
+            <div class="footer-animate footer-animate-delay-2">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">Quick Links</h3>
+                <ul class="space-y-2">
+                    <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
+                    <li><a href="programs.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Our Programs</a></li>
+                    <li><a href="volunteer.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Get Involved</a></li>
+                    <li><a href="donate.html" class="text-gray-400 hover:text-white transition duration-300 footer-link">Donate</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-animate footer-animate-delay-3">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">Contact Us</h3>
+                <ul class="space-y-2 text-gray-400">
+                    <li class="hover:translate-x-2 transition-transform duration-300">
+                        <i class="fas fa-map-marker-alt mr-2"></i>Accra, Ghana
+                    </li>
+                    <li class="hover:translate-x-2 transition-transform duration-300">
+                        <i class="fas fa-phone mr-2"></i>+233 (27) 360 5996
+                    </li>
+                    <li class="hover:translate-x-2 transition-transform duration-300">
+                        <i class="fas fa-envelope mr-2"></i>contact@golcoastliteracyprogram.org
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div class="footer-animate footer-animate-delay-4">
+                <h3 class="text-xl font-semibold mb-4 footer-heading">Newsletter</h3>
+                <form id="newsletter-form" class="space-y-2">
+                    <input type="email" placeholder="Your email" 
+                           class="w-full px-3 py-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500 newsletter-input" 
+                           required>
+                    <button type="submit" 
+                            class="w-full hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded transition duration-300 btn transform hover:scale-105">
+                        Subscribe
+                    </button>
+                </form>
             </div>
         </div>
-    </footer>
 
-    <button id="back-to-top" class="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+        <hr class="my-8 border-gray-700">
 
+        <!-- Footer Bottom -->
+        <div class="flex flex-col md:flex-row justify-between items-center footer-animate">
+            <div class="text-gray-400 mb-4 md:mb-0">
+                &copy; 2023 GCLP-NGO | Powered By Dcom Technology Ltd.
+            </div>
+            <div class="flex space-x-4">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300 social-icon">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" class="fixed bottom-4 right-4 bg-blue-500 text-white p-2 rounded-full shadow-lg opacity-0 transition-opacity duration-300">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+<!-- Scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lazy loading implementation
+        const lazyImages = document.querySelectorAll('.lazy-image');
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    
+                    img.onload = () => {
+                        img.classList.add('loaded');
+                        const placeholder = img.previousElementSibling;
+                        if (placeholder && placeholder.classList.contains('loading-placeholder')) {
+                            placeholder.style.display = 'none';
+                        }
+                    };
+                    
+                    observer.unobserve(img);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '50px',
+            threshold: 0.1
+        });
+
+        lazyImages.forEach(img => {
+            imageObserver.observe(img);
+        });
+
+        // Existing gallery filter code
+        const filters = document.querySelectorAll('.gallery-filter');
+        const items = document.querySelectorAll('.gallery-item');
+
+        filters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                filters.forEach(f => f.classList.remove('active', 'bg-navy-blue', 'text-white'));
+                this.classList.add('active', 'bg-navy-blue', 'text-white');
+
+                const category = this.dataset.filter;
+                items.forEach(item => {
+                    if (category === 'all' || item.dataset.category === category) {
+                        item.style.display = '';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    });
+</script>
 <script src="script.js"></script>
 
+<!-- Add this script after your existing scripts -->
+<script>
+function loadGalleryImages() {
+    const images = getGalleryImages();
+    const galleryContainer = document.querySelector('#galleryGrid');
+    
+    galleryContainer.innerHTML = images
+        .filter(image => image.active)
+        .map(image => `
+            <div class="gallery-item" data-category="${image.category}">
+                <a href="${image.imageUrl}" data-lightbox="gallery" data-title="${image.title}">
+                    <div class="relative group overflow-hidden rounded-lg lazy-image-container">
+                        <div class="loading-placeholder"></div>
+                        <img 
+                            data-src="${image.imageUrl}" 
+                            alt="${image.title}" 
+                            class="lazy-image w-full h-64 object-cover transform transition-transform duration-500 group-hover:scale-110"
+                        >
+                        <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 
+                                  transition-opacity duration-300 flex items-center justify-center">
+                            <p class="text-white text-center p-4">${image.description}</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `).join('');
+
+    initializeLazyLoading();
+}
+
+document.addEventListener('DOMContentLoaded', loadGalleryImages);
+</script>
 </body>
 </html>
