@@ -35,4 +35,28 @@ class View
             include $file;
         }
     }
+
+    public static function baseUrl(): string
+    {
+        $env = $_ENV['APP_URL'] ?? '';
+        if ($env) {
+            return rtrim($env, '/');
+        }
+        $scriptDir = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? ''));
+        return rtrim($scriptDir ?: '/', '/');
+    }
+
+    public static function csrfToken(): string
+    {
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+        return (string)$_SESSION['csrf_token'];
+    }
+
+    public static function csrfField(): string
+    {
+        $token = self::csrfToken();
+        return '<input type="hidden" name="csrf_token" value="' . htmlspecialchars($token, ENT_QUOTES, 'UTF-8') . '">';
+    }
 }

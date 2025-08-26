@@ -15,6 +15,11 @@ if (file_exists($envPath . '.env')) {
     Dotenv\Dotenv::createImmutable($envPath)->load();
 }
 
+// Start session for auth
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 // Load config
 require __DIR__ . '/config/config.php';
 
